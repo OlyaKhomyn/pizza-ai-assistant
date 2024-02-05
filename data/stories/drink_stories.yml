@@ -1,0 +1,46 @@
+version: "3.1"
+stories:
+
+- story: ask for drink
+  steps:
+  - checkpoint: ask_for_more_pizza
+  - action: action_utter_confirm
+  - intent: response_negative
+  - action: utter_ask_for_drink
+  - or:
+    - intent: response_positive
+    - intent: add_drink
+  - action: drinks_form
+  - active_loop: drinks_form
+  - slot_was_set:
+      - requested_slot: null
+  - active_loop: null
+  - action: action_utter_anything_else
+
+- story: ask for drink + ask available
+  steps:
+  - checkpoint: ask_for_more_pizza
+  - action: action_utter_confirm
+  - intent: response_negative
+  - action: utter_ask_for_drink
+  - intent: general_inquiry
+  - action: utter_available_drinks
+  - action: utter_ask_for_drink
+  - or:
+    - intent: response_positive
+    - intent: add_drink
+  - action: drinks_form
+  - active_loop: drinks_form
+  - slot_was_set:
+      - requested_slot: null
+  - active_loop: null
+  - action: action_utter_anything_else
+
+- story: ask for drink + response negative
+  steps:
+  - checkpoint: ask_for_more_pizza
+  - action: action_utter_confirm
+  - intent: response_negative
+  - action: utter_ask_for_drink
+  - intent: response_negative
+  - action: action_utter_anything_else

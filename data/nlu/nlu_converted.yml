@@ -1,0 +1,681 @@
+version: "3.1"
+nlu:
+- intent: welcome_greet
+  examples: |
+    - just going to say hi
+    - hey
+    - hello hi
+    - Hey
+    - howdy
+    - Howdy
+    - hey there
+    - hi there
+    - Hi
+    - hi
+    - Hi there
+    - greetings
+    - long time no see
+    - hello
+- intent: init_pizza_question_negative
+  examples: |
+    - do you have pizza with no [meat](pizza_toppings)?
+    - do you have pizza with no [cheese](pizza_toppings)?
+    - do you have pizza with no [pepper](pizza_toppings)?
+    - do you have pizza with no [vegetables](pizza_toppings)?
+    - do you have pizza without [meat](pizza_toppings)?
+    - do you have pizza without [cheese](pizza_toppings)?
+    - do you have pizza without [pepper](pizza_toppings)?
+    - do you have pizza without [vegetables](pizza_toppings)?
+    - do you have pizza with no [meat](pizza_toppings) please?
+    - do you have pizza with no [cheese](pizza_toppings) please?
+    - do you have pizza with no [pepper](pizza_toppings) please?
+    - do you have pizza with no [vegetables](pizza_toppings) please?
+    - do you have pizza without [meat](pizza_toppings) please?
+    - do you have pizza without [cheese](pizza_toppings) please?
+    - do you have pizza without [pepper](pizza_toppings) please?
+    - do you have pizza without [vegetables](pizza_toppings) please?
+    - pizza with no [meat](pizza_toppings)?
+    - pizza with no [cheese](pizza_toppings)?
+    - pizza with no [pepper](pizza_toppings)?
+    - pizza with no [vegetables](pizza_toppings)?
+    - pizza without [meat](pizza_toppings)?
+    - pizza without [cheese](pizza_toppings)?
+    - pizza without [pepper](pizza_toppings)?
+    - pizza without [vegetables](pizza_toppings)?
+    - pizza with no [meat](pizza_toppings) please?
+    - pizza with no [cheese](pizza_toppings) please?
+    - pizza with no [pepper](pizza_toppings) please?
+    - pizza with no [vegetables](pizza_toppings) please?
+    - pizza without [meat](pizza_toppings) please?
+    - pizza without [cheese](pizza_toppings) please?
+    - pizza without [pepper](pizza_toppings) please?
+    - pizza without [vegetables](pizza_toppings) please?
+    - any pizza with no [meat](pizza_toppings)?
+    - any pizza with no [cheese](pizza_toppings)?
+    - any pizza with no [pepper](pizza_toppings)?
+    - any pizza with no [vegetables](pizza_toppings)?
+    - any pizza without [meat](pizza_toppings) please?
+    - any pizza without [cheese](pizza_toppings) please?
+    - any pizza without [pepper](pizza_toppings) please?
+    - any pizza without [vegetables](pizza_toppings) please?
+- intent: init_pizza_question_positive
+  examples: |
+    - do you offer [Americana](pizza_type) pizza?
+    - do you offer [Funghi](pizza_toppings) pizza?
+    - do you offer [Pepperoni](pizza_type) pizza?
+    - do you have [hawaii](pizza_type) pizza?
+    - do you offer [margherita](pizza_type) pizza?
+    - do you have [Americana](pizza_type) pizza?
+    - do you have [Pepperoni](pizza_type) pizza?
+    - do you offer [margherita](pizza_type) and [Seafood](pizza_type) pizza?
+    - do you have [Americana](pizza_type) and [Vegetarian](pizza_type) pizza?
+    - do you have [Pepperoni](pizza_type) or [Napoli](pizza_type) pizza?
+    - do you have [bacon](pizza_toppings) pizza?
+    - do you have [mortadella](pizza_toppings) pizza?
+    - do you have [Vegetarian](pizza_type) pizza?
+    - do you have [Vegetable](pizza_type) pizza?
+    - any [vegetarian](pizza_type) pizza?
+    - any [meat](pizza_toppings) pizza?
+    - any [artichoke](pizza_toppings) pizza?
+    - do you have [cheese](pizza_toppings) pizza?
+    - do you serve [meat](pizza_toppings) pizza?
+    - do you serve [potatoes](pizza_toppings) pizza?
+    - do you serve [Hawaii](pizza_toppings) pizza?
+    - do you serve [bufala](pizza_toppings) pizza?
+    - do you serve [Margherita](pizza_toppings)?
+    - do you serve [bacon](pizza_toppings) pizza?
+    - do you serve [ham](pizza_toppings) pizza?
+    - do you serve [olives](pizza_toppings) pizza?
+    - pizza with [pepper](pizza_toppings)?
+    - pizza with [mozzarella](pizza_toppings)?
+    - pizza with [artichoke](pizza_toppings) and [salmon] toppings?
+    - pizza with [pepper](pizza_toppings)?
+    - pizza with [vegetables](pizza_toppings)?
+    - pizza with [onions](pizza_toppings)?
+    - pizza with [salami](pizza_toppings)?
+    - do you have [ham](pizza_toppings) or [burrata](pizza_toppings) toppings?
+    - do you have [bacon](pizza_toppings) toppings?
+    - do you have [Margherita](pizza_type) pizza and [ham](pizza_toppings) topping?
+    - do you serve [Romana](pizza_type) pizza and [olives](pizza_toppings) topping?
+    - do you have [mortadella](pizza_toppings) or [funghi](pizza_toppings) toppings?
+    - do you have [bufala](pizza_toppings) topping?
+    - do you serve [Vegetarian](pizza_type) pizza and [corn](pizza_toppings) topping?
+    - do you serve [Calzone](pizza_type) pizza and [olives](potatoes) topping?
+    - is [ham](pizza_toppings) topping available?
+    - is [salmon](pizza_toppings) topping available?
+- intent: item_start_generic
+  examples: |
+    - i want to buy a [margherita](pizza_type) pizza
+    - [two](pizza_amount) [medium](pizza_size) [Pepperoni](pizza_type) pizza
+    - [4](pizza_amount) [small](pizza_size) [Vegetable](pizza_type) pizza pizza
+    - [four](pizza_amount) [small](pizza_size) pizza [Funghi](pizza_toppings)
+    - [four](pizza_amount) [small](pizza_size) pizza [with vegetables](pizza_type)
+    - [cheese](pizza_toppings) and [SMALL](pizza_size)
+    - [medium](pizza_size) [olives](pizza_toppings) pizza
+    - [small](pizza_size) [Pepperoni](pizza_type) pizza
+    - [large](pizza_size) [Hawaii](pizza_type) pizza
+    - [large](pizza_size) [onions](pizza_toppings)
+    - want to order [medium](pizza_size) [tomatoes](pizza_toppings) pizza
+    - need [large](pizza_size) [pepperoni](pizza_toppings) pizza
+    - want [medium](pizza_size) [onions](pizza_toppings) pizza
+    - want [large](pizza_size) [pepper](pizza_toppings) pizza
+    - [1](pizza_amount) [Hawaii](pizza_type) pizza [large](pizza_size)
+    - one [Pepperoni](pizza_type) pizza [medium](pizza_size)
+    - [medium](pizza_size) with [onions](pizza_toppings)
+    - [large](pizza_size) [corns](pizza_toppings)
+    - I want a [large](pizza_size) [Margherita](pizza_type) pizza
+    - I want to order [large](pizza_size) pizza with [olives](pizza_toppings)
+    - one [Pepperoni](pizza_type) [medium](pizza_size) pizza
+    - want to order [large](pizza_size) [cheese](pizza_toppings) pizza
+    - i want to order [olives](pizza_toppings) and [onions](pizza_toppings) pizza
+    - I like [small](pizza_size) [olives](pizza_toppings) pizza
+    - I want to buy a pizza
+    - I'd like to order a pizza
+    - I want pizza
+    - I want to order a pizza
+    - pizza
+    - pizza please
+    - Pizza will do
+    - I want a [small](pizza_size) [Margherita](pizza_type) and a [medium](pizza_size) [Napoli](pizza_type) pizzas
+    - I want [one](pizza_amount) [4 cheeses](pizza_type) and [two](pizza_amount) [Capricciosa](pizza_type)
+    - I want a [medium](pizza_size) [Americana](pizza_type) and [two](pizza_amount) [small](pizza_size) [4 cheeses](pizza_type)
+    - I want to buy [one](pizza_amount) [Americana](pizza_type) and [two](pizza_amount) [Margherita](pizza_type) pizzas
+    - I want to order [4](pizza_amount) [large](pizza_size) [Marinara](pizza_type) and [three](pizza_amount) [medium](pizza_size) [Napoli](pizza_type)
+    - I'll take a [medium](pizza_size) [Romana](pizza_type) and a [small](pizza_size) [Margherita](pizza_type) pizzas
+    - I'll take [three](pizza_amount) [Calzone](pizza_type) pizzas and [1](pizza_amount) [Romana](pizza_type) pizza
+    - I'll take a [small](pizza_size) [Marinara](pizza_type) and [two](pizza_amount) [small](pizza_size) [4 cheeses](pizza_type)
+    - I want to order [2](pizza_amount) [large](pizza_size) [4 cheeses](pizza_type) pizza and [1](pizza_amount) [medium](pizza_size) [Seafood](pizza_type)
+    - Give me please [2](pizza_amount) [Seafood](pizza_type) and [2](pizza_amount) [4 cheeses](pizza_type)
+    - Give me please [one](pizza_amount) [normal](pizza_size) [Calzone](pizza_type) and [two](pizza_amount) [large](pizza_size) [Pepperoni](pizza_type)
+    - I want to buy a [small](pizza_size) [Americana](pizza_type) and a [large](pizza_size) [Napoli](pizza_type) pizzas
+    - [large](pizza_size) [Margherita](pizza_type) and [small](pizza_size) [pepp](pizza_type)
+    - [small](pizza_size) [Vegetarian](pizza_type) and [large](pizza_size) [Calzone](pizza_type) pizzas
+    - [medium](pizza_size) [napoli](pizza_type) pizza and [large](pizza_size) [romana](pizza_type)
+    - [size L](pizza_size) [Calzone](pizza_type) pizza and [size S](pizza_size) [Vegetarian](pizza_type)
+    - [size M](pizza_size) [Romana](pizza_type) and [size M](pizza_size) [Calzone](pizza_type) pizzas
+    - [small](pizza_size) [Pepperoni](pizza_type) pizza and [medium](pizza_size) [Romana](pizza_type)    
+    - [Seafood](pizza_type) and [Capricciosa](pizza_type)
+    - [Americana](pizza_type) pizza and [4 cheeses](pizza_type)
+    - [2](pizza_amount) [small](pizza_size) [Marinara](pizza_type) pizza and [one](pizza_amount) [Hawaii](pizza_type)
+    - [1](pizza_amount) [small](pizza_size) [Americana](pizza_type) pizza and [two](pizza_amount) [Pepperoni](pizza_type)
+    - [small](pizza_size) [Seafood](pizza_type) [two](pizza_amount) and [2](pizza_amount) [medium](pizza_size) [Pepperoni](pizza_type)
+    - [3](pizza_amount) [Calzone](pizza_type) and [3](pizza_amount) [size S](pizza_size) [Hawaii](pizza_type)
+    - I want a custom pizza with [ham](pizza_toppings) [bacon](pizza_toppings) and [olives](pizza_toppings)
+    - I want a custom pizza with [artichoke](pizza_toppings) [salmon](pizza_toppings) and [mortadella](pizza_toppings)
+    - I'll have [corn](pizza_toppings) one
+    - I'll have [bufala](pizza_toppings) and [tomatoes](pizza_toppings) one
+    - I'll have [small](pizza_size) [salami](pizza_toppings) pizza
+    - [one](pizza_amount) [funghi](pizza_toppings) pizza
+    - [2](pizza_amount) pizza with [tuna](pizza_toppings) and [onions](pizza_toppings)
+    - [mozzarella](pizza_toppings) and [corn](pizza_toppings) pizza
+    - I want [potatoes](pizza_toppings) and [olives](pizza_toppings) toppings
+    - please give me a [medium](pizza_size) [bufala](pizza_toppings) and [salami](pizza_toppings)
+- intent: item_type
+  examples: |
+    - [Funghi](pizza_toppings) pizza
+    - [Margherita](pizza_type) pizza
+    - [Hawaii](pizza_type) pizza
+    - [Pepperoni](pizza_type) pizza
+    - [Vegetarian](pizza_type) pizza
+    - [Marinara](pizza_type)
+    - [Napoli](pizza_type)
+    - [4 cheeses](pizza_type)
+    - [Capricciosa](pizza_type)
+    - [Seafood](pizza_type)
+    - [Calzone](pizza_type)
+    - add it on top of [Vegetarian](pizza_type) pizza
+    - add it on top of [Margherita](pizza_type)
+    - add it on top of [Hawaii](pizza_type)
+    - for [Pepperoni](pizza_type)
+    - for [Romana](pizza_type) pizza
+    - for [Seafood](pizza_type)
+    - [Calzone](pizza_type) pizza
+- intent: add_more_toppings
+  examples: |
+    - [tuna](pizza_toppings)
+    - [salmon](pizza_toppings)
+    - [mortadella](pizza_toppings)
+    - [tomatoes](pizza_toppings)
+    - [artichoke](pizza_toppings)
+    - [corn](pizza_toppings)
+    - [olives](pizza_toppings) and [onions](pizza_toppings)
+    - [tomatoes](pizza_toppings) and [salmon](pizza_toppings)
+    - [salami](pizza_toppings) and [funghi](pizza_toppings)
+    - [mozzarella](pizza_toppings) and [corn](pizza_toppings)
+    - please add also [ham](pizza_toppings) and [salami](pizza_toppings)
+    - please add also [tuna](pizza_toppings)
+    - please add also [tuna](pizza_toppings) on top of [Romana](pizza_type) 
+    - add also [tuna](pizza_toppings) and [funghi](pizza_toppings) on top of [Capricciosa](pizza_type) 
+    - let's add [olives](pizza_toppings) as well
+    - let's add [bufala](pizza_toppings) as well
+    - yes, I want to add [mozzarella](pizza_toppings) for [Margherita](pizza_type) 
+    - yeah, [bacon](pizza_toppings) for [Napoli](pizza_type) 
+    - sure, [burrata](pizza_toppings) and [potatoes](pizza_toppings) for [Seafood](pizza_type)
+    - add more [tomatoes](pizza_toppings)
+    - add more [onions](pizza_toppings) toppings
+    - please add extra [bufala](pizza_toppings)
+    - i want extra [olives](pizza_toppings) too
+    - add extra [funghi](pizza_toppings)
+    - add more [salami](pizza_toppings) please
+    - add more [corn](pizza_toppings) toppings
+    - please add extra [ham](pizza_toppings)
+    - i want extra [salmon](pizza_toppings) too
+    - add extra [artichoke](pizza_toppings) please
+- intent: topping_negative
+  examples: |
+    - i don't like [onions](pizza_toppings)
+    - i prefer it without [tuna](pizza_toppings)
+    - no [cheese](pizza_toppings) please
+    - i don't want [bacon](pizza_toppings)
+    - don't put [olives](pizza_toppings)
+    - no [meat](pizza_toppings)
+    - i really don't like [artichoke](pizza_toppings)
+    - no but i don't like [onions](pizza_toppings)
+    - no but i prefer it without [olives](pizza_toppings) though
+    - no but i really don't like [corn](pizza_toppings)
+    - no but i prefer it without [tuna](pizza_toppings) though
+    - just don't put [salami](pizza_toppings)
+    - just don't put [ham](pizza_toppings) please
+    - i don't like [mortadella](pizza_toppings)
+    - i prefer it without [bufala](pizza_toppings)
+    - no [cheese](pizza_toppings) please
+    - i don't want [cheese](pizza_toppings)
+    - i don't want any [meat](pizza_toppings)
+- intent: remove_item
+  examples: |
+    - remove [artichoke](pizza_toppings)
+    - remove [funghi](pizza_toppings)
+    - remove [bacon](pizza_toppings)
+    - remove [salmon](pizza_toppings)
+    - cancel [corn](pizza_toppings)
+    - cancel [potatoes](pizza_toppings)
+    - remove [olives](pizza_toppings) from my pizza
+    - please remove [bufala](pizza_toppings) topping from my order
+    - remove [salmon](pizza_toppings) from my order
+    - remove [mortadella](pizza_toppings) topping from my order
+    - please cancel [bacon](pizza_toppings) topping
+    - I don't want [corn](pizza_toppings) topping anymore
+    - please delete [ham](pizza_toppings)
+    - please remove [mozzarella](pizza_toppings) topping
+    - remove [olives](pizza_toppings) topping please
+    - can you please cancel [tomatoes](pizza_toppings) topping?
+    - can you cancel [salami](pizza_toppings) topping from my pizza?
+    - can you remove [tuna](pizza_toppings)?
+    - i want to remove [salmon](pizza_toppings) topping
+    - i want to cancel [funghi](pizza_toppings) from my pizza
+    - remove [burrata](pizza_toppings) and [mozzarella](pizza_toppings)
+    - remove [ham](pizza_toppings) and [potatoes](pizza_toppings)
+    - cancel [funghi](pizza_toppings) and [tuna](pizza_toppings)
+    - remove [Hawaii](pizza_type)
+    - remove [Napoli](pizza_type)
+    - remove [Pepperoni](pizza_type)
+    - remove [Americana](pizza_type)
+    - cancel [4 cheeses](pizza_type)
+    - cancel [Seafood](pizza_type)
+    - remove [Romana](pizza_type) from my pizza
+    - please remove [Calzone](pizza_type) topping from my order
+    - remove [Marinara](pizza_type) from my order
+    - remove [Margherita](pizza_type) topping from my order
+    - please cancel [Capricciosa](pizza_type) topping
+    - I don't want [Pepperoni](pizza_type) topping anymore
+    - please delete [Americana](pizza_type)
+    - can you please remove [tuna](pizza_toppings) and [potatoes](pizza_toppings) pizza?
+    - would you mind canceling [potatoes](pizza_toppings) pizza?
+    - can you please cancel [Americana](pizza_type)?
+    - can you remove [Pepperoni](pizza_type) pizza?
+    - would you mind canceling [bacon](pizza_toppings) pizza?
+    - can you please cancel [Romana](pizza_type)?
+    - can you remove [Seafood](pizza_type) pizza?
+    - please cancel [Hawaii](pizza_type)
+- intent: cancel_order
+  examples: |
+    - i don't want to order anymore
+    - cancel all my order please
+    - cancel everything
+    - remove everything
+    - remove everything from my order
+    - i don't want to proceed anymore
+    - cancel my order
+    - delete my order
+    - delete everything
+    - can you please cancel everything?
+    - can you delete everything I ordered?
+    - just cancel everything
+    - just delete all of that
+- intent: item_change
+  examples: |
+    - I changed my mind. Can I get a [funghi](pizza_toppings) instead?
+    - I'd like a [margherita](pizza_type) pizza instead.
+    - can i get a [vegetarian](pizza_type) instead?
+    - actually, can I get [margherita](pizza_type)?
+    - actually, i 'd like [small](pizza_size) pizza.
+    - I'd like in [small](pizza_size) instead.
+    - actually, i would like a [small](pizza_size) [vegetarian](pizza_type).
+    - wait, can i get it in [large](pizza_size).
+    - I want [funghi](pizza_toppings) instead
+    - I want to change the size to [medium](pizza_size)
+    - I want to change the size to [large](pizza_size)
+    - I want my pizza in [small](pizza_size) instead
+    - Actually i want to modify pizza type.
+    - Actually i want to modify pizza size.
+    - i want to change my order.
+    - can I have [Seafood](pizza_type) pizza instead of [Romana](pizza_type)?
+    - i want [Marinara](pizza_type) instead of [Pepperoni](pizza_type)?
+    - please change [medium](pizza_size) to [small](pizza_size)
+    - it's wrong
+    - it's not what i ordered
+    - you made a mistake
+    - everything is wrong
+    - you misunderstood my order
+- intent: ask_recommendation
+  examples: |
+    - what can you recommend to me?
+    - what would you suggest?
+    - help me choose please
+    - can you help me with choosing?
+    - what can you recommend?
+    - what should I take in your opinion?
+    - what would you take?
+    - what would you order?
+    - help me with my order
+    - i'm not sure what I want
+    - i can't decide what I want to order
+    - any suggestions?
+    - any recommendations?
+    - i don't know what i want
+    - i don't know what to order
+- intent: allergy
+  examples: |
+    - yes i'm [lactose](allergy_list) intolerant
+    - i have [shellfish](allergy_list) allergy
+    - I have [dairy](allergy_list) allergy
+    - it needs to be [gluten-free](allergy_list)
+    - it should be no [lactose](allergy_list)
+    - make it [lactose-free](allergy_list)
+    - make it without [gluten](allergy_list)
+    - you can't put any [peanuts](allergy_list)
+    - i have [fish](allergy_list) intolerance
+    - i can't eat [dairy](allergy_list)
+- intent: response_negative
+  examples: |
+    - actually no
+    - nope
+    - no
+    - Nope
+    - No, I want to make a change
+    - Noo
+    - No, I don't like it
+    - i don't like it
+    - not at all
+    - No
+    - Nooo
+    - no
+    - no, i don't want
+- intent: response_positive
+  examples: |
+    - all good
+    - yeah all is good
+    - yep
+    - yeah
+    - perfect
+    - yes, that is right
+    - yes
+    - that's right
+    - correct
+    - Yes
+    - Yeah
+    - let's go with it
+    - okay, i like it
+    - let's take it
+    - i like it
+    - okay, that's good
+- intent: response_name_phone
+  examples: |
+    - my name is Raymond and number is [097854432](phone_number).
+    - Federico and [098765432](phone_number)
+    - Anna [098765321](phone_number)
+    - James and my number is [098134124](phone_number)
+    - I'm Eduardo and [430290439](phone_number)
+- intent: order_take_home
+  examples: |
+    - take away
+    - i prefer take away
+    - take away please
+    - i'll go with takeaway
+    - takeaway
+    - takeaway will do
+    - takeaway will be great
+    - i'm fine with takeaway
+- intent: order_delivery
+  examples: |
+    - delivery please
+    - delivery
+    - i prefer delivery
+    - deliver it please
+    - let's have delivery
+    - i want it delivered please
+    - yes I prefer delivery
+    - only delivery
+    - delivery will be perfect
+- intent: order_delivery_address
+  examples: |
+    - my address is #46, 655 avenue du techno pole
+    - #46, 655 avenue du techno polef
+    - house number 46 street 655 avenue du technopole
+    - house num 46  655 avenue du techno pole street
+    - House No 46  655 avenue du techno pole street
+    - House No. 46  655 avenue du techno pole street
+    - my address is house number 46 street 655 avenue du techno pole
+    - my address is house num 46  655 avenue du techno pole street
+    - my address is No 46  655 avenue du techno pole street
+    - my address is No. 46 655 avenue du techno pole street
+- intent: preferred_time
+  examples: |
+    - in 30 minutes
+    - at 5pm
+    - in ten minutes
+    - immediately
+    - as soon as possible
+    - now
+    - in 2 hours
+    - 10pm
+    - in the evening
+- intent: item_size
+  examples: |
+    - [small](pizza_size)
+    - [large](pizza_size)
+    - I want to order [large](pizza_size) pizza
+    - I want a [large](pizza_size) pizza
+    - I think its [large](pizza_size)
+    - [medium](pizza_size) pizza
+    - [medium](pizza_size)
+    - [large](pizza_size) please
+    - [large](pizza_size)
+    - [S](pizza_size)
+    - I want to order [14 inch](pizza_size) pizza
+    - I want a [size L](pizza_size) pizza
+    - I think its [L](pizza_size)
+    - [normal](pizza_size) pizza
+    - [size M](pizza_size)
+    - [10 inch](pizza_size) please
+    - [large](pizza_size)
+    - i want [large](pizza_size)
+    - just [small](pizza_size)
+    - i want just [medium](pizza_size)
+    - let's have [L](pizza_size)
+    - let's have [14 inch](pizza_size)
+    - should be [12 inch](pizza_size)
+    - i want it [small](pizza_size)
+    - i want it [large](pizza_size)
+    - i want it [large](pizza_size)
+    - let it be [small](pizza_size)
+    - let it be [medium](pizza_size)
+- intent: explain
+  examples: |
+    - can you explain more?
+    - can you tell me more about what you mean by that?
+    - what do you mean?
+    - elaborate more on that?
+    - what does it mean?
+    - meaning?
+    - explain
+    - tell me more about it
+    - what do you mean
+    - i don't understand
+- intent: add_drink
+  examples: |
+    - add [1](drink_amount) [coke](drink)
+    - [two](drink_amount) [coca cola](drink)
+    - [one](drink_amount) [coca-cola](drink)
+    - an [apple juice](drink)
+    - a [soda](drink)
+    - [one](drink_amount) [pepsi](drink)
+    - an [orange juice](drink)
+    - [3](drink_amount) bottles of [water](drink) please
+    - just [water](drink)
+- intent: general_inquiry
+  examples: |
+    - what can I add?
+    - what is available?
+    - tell me which one do you have
+    - tell me which one do you offer
+    - what toppings do you have?
+    - what toppings do you offer?
+    - give me toppings list please
+    - what toppings are available?
+    - tell me what you have
+    - what drinks do you have?
+    - what do you offer?
+    - what are the options?
+- intent: menu_question
+  examples: |
+    - what do you have on a menu?
+    - what pizzas do you have?
+    - what's on a menu?
+    - what pizza can I order?
+    - what pizzas do you offer?
+    - can you tell me your menu?
+    - tell me please the menu options
+    - tell me menu
+    - tell me what you have on a menu?
+- intent: request_restaurant_location
+  examples: |
+    - Where is the restaurant?
+    - Where do i need to go to get my pizza?
+    - how far are you?
+    - where are you guys?
+    - where's my pizza?
+    - what's your address?
+- intent: item_amount
+  examples: |
+    - [3](pizza_amount)
+    - [2](pizza_amount)
+    - [three](pizza_amount)
+    - [1](pizza_amount)
+    - [dozen](pizza_amount)
+    - [two](pizza_amount)
+    - [two](pizza_amount) please
+    - [2](pizza_amount) please
+    - just [one](pizza_amount)
+    - just [1](pizza_amount)
+    - [three](pizza_amount)
+    - i want [2](pizza_amount)
+    - just [one](pizza_amount)
+    - i want just [2](pizza_amount)
+    - only [2](pizza_amount)
+    - let's have [3](pizza_amount)
+    - let's have [two](pizza_amount)
+    - should be [1](pizza_amount)
+- intent: crust_type
+  examples: |
+    - [Stuffed Crust](pizza_crust)
+    - [Cracker Crust](pizza_crust)
+    - [Flat Bread Crust](pizza_crust)
+    - [Thin Crust](pizza_crust)
+    - [stuffed crust](pizza_crust)
+    - [cracker crust](pizza_crust)
+    - [flat bread crust](pizza_crust)
+    - [thin crust](pizza_crust)
+    - [stuffed](pizza_crust)
+    - [Cracker](pizza_crust)
+    - [flat bread](pizza_crust)
+    - [thin](pizza_crust)
+    - [flat](pizza_crust)
+    - [stuffed](pizza_crust)
+    - [cracker](pizza_crust)
+    - I want it [thin](pizza_crust)
+    - I want it [flat](pizza_crust)
+    - I want [cracker crust](pizza_crust)
+    - I want [flat bread](pizza_crust)
+    - I want [stuffed bread](pizza_crust)
+    - I want [thin bread](pizza_crust)
+    - [stuffed](pizza_crust) please
+    - [cracker](pizza_crust) please
+    - should be [thin](pizza_crust)
+    - should be [stuffed](pizza_crust)
+    - should be [cracker crust](pizza_crust)
+    - let it be [thin crust]
+    - let it be [stuffed]
+    - let it be [flat]
+- intent: out_of_scope
+  examples: |
+    - What is 2 + 2?
+    - Who's the US President?
+    - do you have shoes
+    - what is your name
+    - are you real
+    - do you have a sister
+    - book a flight from milan to ny
+    - how far is the square
+    - give me the directions to time square
+- synonym: small
+  examples: |
+    - 10
+    - 10 inch
+    - small
+    - Small
+    - size S
+    - S
+- synonym: medium
+  examples: |
+    - 12
+    - 12 inch
+    - Medium
+    - medium
+    - normal
+    - twelve inch
+    - size M
+    - M
+- synonym: large
+  examples: |
+    - 14
+    - 14 inch
+    - large
+    - size L
+    - L
+- synonym: Funghi
+  examples: |
+    - Funghi
+    - funghi
+- synonym: Hawaii
+  examples: |
+    - Hawaii
+    - hawaii
+    - ananas
+- synonym: Margherita
+  examples: |
+    - Margherita
+    - margherita
+- synonym: Pepperoni
+  examples: |
+    - Pepp
+    - pepper
+    - pepperoni
+- synonym: Vegetarian
+  examples: |
+    - Vegetarian
+    - Vegetable
+    - with vegetables
+    - vegetarian
+    - vegetable
+- synonym: Stuffed Crust
+  examples: |
+    - stuffed
+    - Stuffed
+    - stuffed crust
+- synonym: Cracker Crust
+  examples: |
+    - cracker
+    - Cracker
+    - cracker crust
+- synonym: Flat Bread Crust
+  examples: |
+    - flat
+    - flat bread
+    - flat bread crust
+    - Flat
+    - Flat Bread
+- synonym: Thin Crust
+  examples: |
+    - thin
+    - thin crust
+    - thin Crust
+- synonym: lactose
+  examples: |
+    - dairy
+    - lactose-free
+- synonym: gluten
+  examples: |
+    - gluten-free
+- synonym: coca cola
+  examples: |
+    - coca-cola
+    - coke
+    - colas
+    - coca-colas
+- synonym: pepsi
+  examples: |
+    - pepsi-cola
+- regex: phone_number
+  examples: |
+    - \d{9,9}

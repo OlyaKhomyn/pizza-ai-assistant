@@ -1,0 +1,153 @@
+version: "3.1"
+stories:
+
+- story: more toppings
+  steps:
+  - intent: item_start_generic
+  - action: action_set_add_more_pizza
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_more_toppings
+#  - checkpoint: ask_for_more_toppings
+#  - action: utter_more_toppings
+
+- story: more toppings + remove pizza
+  steps:
+#  - checkpoint: ask_for_more_toppings
+  - action: utter_more_toppings
+  - or:
+    - intent: item_change
+    - intent: remove_item
+  - action: change_form
+  - active_loop: change_form
+  - slot_was_set:
+      - requested_slot: null
+  - active_loop: null
+  - action: action_reset_pizza_change_form
+#  - checkpoint: ask_for_more_toppings
+  - action: utter_more_toppings
+
+- story: more toppings + response positive
+  steps:
+#  - checkpoint: ask_for_more_toppings
+  - action: utter_more_toppings
+  - intent: response_positive
+  - action: extra_toppings_form
+  - active_loop: extra_toppings_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_reset_extra_toppings
+  - checkpoint: ask_for_more_pizza
+#  - action: action_utter_confirm
+
+- story: more toppings + add_more_toppings intent
+  steps:
+#  - checkpoint: ask_for_more_toppings
+  - action: utter_more_toppings
+  - intent: add_more_toppings
+  - action: extra_toppings_form
+  - active_loop: extra_toppings_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_reset_extra_toppings
+  - checkpoint: ask_for_more_pizza
+#  - action: action_utter_confirm
+
+- story: more toppings + ask available
+  steps:
+#  - checkpoint: ask_for_more_toppings
+  - action: utter_more_toppings
+  - intent: general_inquiry
+  - action: action_get_toppings_list
+  - action: utter_more_toppings
+  - or:
+    - intent: response_positive
+    - intent: add_more_toppings
+  - action: extra_toppings_form
+  - active_loop: extra_toppings_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_reset_extra_toppings
+  - checkpoint: ask_for_more_pizza
+#  - action: action_utter_confirm
+
+- story: ask for the toppings in the middle of the form
+  steps:
+#  - checkpoint: ask_for_more_toppings
+  - action: utter_more_toppings
+  - or:
+    - intent: response_positive
+    - intent: add_more_toppings
+  - action: extra_toppings_form
+  - active_loop: extra_toppings_form
+  - intent: general_inquiry
+  - action: action_get_toppings_list
+  - action: extra_toppings_form
+  - active_loop: extra_toppings_form
+  - slot_was_set:
+      - requested_slot: null
+  - active_loop: null
+  - action: action_reset_extra_toppings
+  - checkpoint: ask_for_more_pizza
+#  - action: action_utter_confirm
+
+- story: action_pizza_question_positive + extra_toppings_form
+  steps:
+  - intent: init_pizza_question_positive
+  - action: action_pizza_question_positive
+  - action: utter_anything_else
+  - intent: add_more_toppings
+  - action: extra_toppings_form
+  - active_loop: extra_toppings_form
+  - slot_was_set:
+      - requested_slot: null
+  - active_loop: null
+  - action: action_reset_extra_toppings
+  - checkpoint: ask_for_more_pizza
+#  - action: action_utter_confirm
+
+
+- story: after utter more toppings user changes the order
+  steps:
+#  - checkpoint: ask_for_more_toppings
+  - action: utter_more_toppings
+  - or:
+    - intent: item_change
+    - intent: remove_toppings
+  - action: change_form
+  - active_loop: change_form
+  - slot_was_set:
+      - requested_slot: null
+  - active_loop: null
+  - action: action_reset_pizza_change_form
+  - action: utter_more_toppings
+
+- story: after utter more pizza user changes the order
+  steps:
+  - action: action_utter_confirm
+  - or:
+    - intent: item_change
+    - intent: remove_toppings
+  - action: change_form
+  - active_loop: change_form
+  - slot_was_set:
+      - requested_slot: null
+  - active_loop: null
+  - action: action_reset_pizza_change_form
+  - checkpoint: ask_for_more_pizza
+#  - action: action_utter_confirm
+
+- story: confirm order
+  steps:
+#  - checkpoint: ask_for_more_toppings
+  - action: utter_more_toppings
+  - intent: response_negative
+  - action: action_reset_extra_toppings
+  - checkpoint: ask_for_more_pizza
+#  - action: action_utter_confirm

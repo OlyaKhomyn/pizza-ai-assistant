@@ -1,0 +1,90 @@
+version: "3.1"
+
+rules:
+- rule: Ask the user to rephrase in case of low NLU confidence
+  steps:
+  - intent: nlu_fallback
+  - action: utter_please_rephrase
+
+- rule: Greet
+  steps:
+    - intent: welcome_greet
+    - action: utter_welcome_greet
+
+- rule: Activate pizza order form
+  steps:
+  - intent: item_start_generic
+  - action: action_set_add_more_pizza
+  - action: pizza_order_form
+  - active_loop: pizza_order_form
+
+- rule: activate form with item type
+  condition:
+    - active_loop: null
+  steps:
+    - intent: item_type
+    - action: action_set_add_more_pizza
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+
+- rule: submit pizza order form
+  condition:
+    - active_loop: pizza_order_form
+  steps:
+    - action: pizza_order_form
+    - active_loop: null
+    - action: utter_more_toppings
+
+- rule: submit extra_toppings_form form
+  condition:
+    - active_loop: extra_toppings_form
+  steps:
+    - action: extra_toppings_form
+    - active_loop: null
+  wait_for_user_input: false
+
+- rule: submit drinks form
+  condition:
+    - active_loop: drinks_form
+  steps:
+    - action: drinks_form
+    - active_loop: null
+    - action: action_utter_anything_else
+
+- rule: out-of-scope
+  steps:
+  - intent: out_of_scope
+  - action: utter_out_of_scope
+
+- rule: where are you?
+  steps:
+    - intent: request_restaurant_location
+    - action: utter_inform_restaurant_location
+    - action: utter_anything_else
+
+- rule: pizza question positive
+  steps:
+    - intent: init_pizza_question_positive
+    - action: action_pizza_question_positive
+    - action: utter_anything_else
+
+- rule: pizza question negative
+  steps:
+    - intent: init_pizza_question_negative
+    - action: action_pizza_question_negative
+    - action: utter_anything_else
+
+- rule: cancel order
+  steps:
+    - intent: cancel_order
+    - action: action_cancel_order
+    - action: action_deactivate_loop
+    - active_loop: null
+    - action: utter_order_canceled
+    - action: utter_anything_else
+
+- rule: bye
+  steps:
+    - action: utter_anything_else
+    - intent: response_negative
+    - action: utter_bye

@@ -1,0 +1,9 @@
+version: "3.1"
+nlu:
+- lookup: drink
+  examples: |
+    - coca cola
+    - pepsi
+    - water
+    - apple juice
+    - orange juice

@@ -1,0 +1,8 @@
+.idea/
+.rasa/
+__pycache__/actions.cpython-38.pyc
+.DS_Store
+/models/
+/results/
+__pycache__/
+.stack-work/

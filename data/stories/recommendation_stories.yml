@@ -1,0 +1,111 @@
+version: "3.1"
+stories:
+
+- story: recommendation in the middle of the form
+  steps:
+    - or:
+      - intent: item_start_generic
+      - intent: item_type
+    - action: action_set_add_more_pizza
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+      - requested_slot: pizza_type
+    - intent: ask_recommendation
+    - action: action_deactivate_loop
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null
+    - action: recommendation_form
+    - active_loop: recommendation_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_ask_ingredient_pos
+
+- story: start recommendation form
+  steps:
+    - intent: ask_recommendation
+    - action: recommendation_form
+    - active_loop: recommendation_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: utter_ask_ingredient_pos
+
+- story: ask ingredient pos
+  steps:
+    - action: utter_ask_ingredient_pos
+    - intent: add_more_toppings
+    - action: set_ingredient_pos
+    - action: utter_ask_ingredient_neg
+
+- story: ask ingredient pos response negative
+  steps:
+    - action: utter_ask_ingredient_pos
+    - or:
+      - intent: topping_negative
+    - action: set_ingredient_neg
+    - action: utter_ask_allergies_list
+
+- story: ask ingredient pos response negative
+  steps:
+    - action: utter_ask_ingredient_pos
+    - intent: response_negative
+    - action: utter_ask_ingredient_neg
+
+- story: ask ingredient pos response negative
+  steps:
+    - action: utter_ask_ingredient_pos
+    - intent: general_inquiry
+    - action: action_get_toppings_list
+    - action: utter_ask_ingredient_pos
+
+- story: ask ingredient neg
+  steps:
+    - action: utter_ask_ingredient_neg
+    - or:
+      - intent: topping_negative
+      - intent: add_more_toppings
+    - action: set_ingredient_neg
+    - action: utter_ask_allergies_list
+
+- story: ask ingredient neg
+  steps:
+    - action: utter_ask_ingredient_neg
+    - intent: allergy
+    - action: set_allergies_list
+    - action: make_recommendation_action
+
+- story: ask ingredient neg response negative
+  steps:
+    - action: utter_ask_ingredient_neg
+    - intent: response_negative
+    - action: utter_ask_allergies_list
+
+- story: ask allergies
+  steps:
+    - action: utter_ask_allergies_list
+    - intent: allergy
+    - action: set_allergies_list
+    - action: make_recommendation_action
+
+- story: ask allergies response negative
+  steps:
+    - action: utter_ask_allergies_list
+    - intent: response_negative
+    - action: make_recommendation_action
+
+- story: add to order
+  steps:
+    - action: make_recommendation_action
+    - intent: response_positive
+    - action: add_recommendation_to_order
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+
+- story: don't add to order
+  steps:
+    - action: make_recommendation_action
+    - intent: response_negative
+    - action: utter_anything_else

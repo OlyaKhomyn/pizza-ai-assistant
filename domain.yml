@@ -1,0 +1,332 @@
+version: '3.1'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- add_drink
+- add_more_toppings
+- crust_type
+- explain
+- general_inquiry
+- init_pizza_question_negative
+- init_pizza_question_positive
+- item_amount
+- item_change
+- item_size
+- item_start_generic
+- item_type
+- order_delivery
+- order_delivery_address
+- order_take_home
+- out_of_scope
+- preferred_time
+- remove_item
+- request_restaurant_location
+- response_name_phone
+- response_negative
+- response_positive
+- welcome_greet
+- cancel_order
+- menu_question
+- allergy
+- ask_recommendation
+- topping_negative
+entities:
+- pizza_amount:
+    influence_conversation: false
+- pizza_type:
+    influence_conversation: false
+- pizza_size:
+    influence_conversation: false
+- pizza_crust:
+    influence_conversation: false
+- phone_number:
+    influence_conversation: false
+- PERSON:
+    influence_conversation: false
+- pizza_toppings:
+    influence_conversation: false
+- sliced:
+    influence_conversation: false
+- drink_amount:
+    influence_conversation: false
+- drink:
+    influence_conversation: false
+- allergy_list:
+    influence_conversation: false
+slots:
+  client_name:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: PERSON
+  order_number:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: custom
+  phone_number:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: phone_number
+  pizza_amount:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+  pizza_size:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+  pizza_type:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+  pizza_crust:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+  pizza_toppings:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+  sliced:
+    type: bool
+    influence_conversation: false
+    mappings:
+    - type: from_intent
+      intent: response_positive
+      value: yes
+      conditions:
+      - active_loop: pizza_order_form
+        requested_slot: sliced
+    - type: from_intent
+      intent: response_negative
+      value: no
+      conditions:
+      - active_loop: pizza_order_form
+        requested_slot: sliced
+  total_order:
+    type: any
+    mappings:
+    - type: custom
+  restaurant_location:
+    type: any
+    mappings:
+    - type: custom
+  more_toppings:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+  group_to_add:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+  requested_slot:
+    type: categorical
+    initial_value: pizza_type
+    values:
+    - pizza_size
+    - pizza_amount
+    - pizza_crust
+    - sliced
+    - pizza_type
+    mappings:
+    - type: custom
+    influence_conversation: true
+  add_more_pizza:
+    type: bool
+    influence_conversation: false
+    initial_value: 'false'
+    mappings:
+    - type: custom
+  pizza_change:
+    type: bool
+    influence_conversation: false
+    initial_value: 'false'
+    mappings:
+    - type: custom
+  drinks:
+    type: list
+    influence_conversation: false
+    mappings:
+    - type: custom
+  group_to_change:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: custom
+  entity_to_change:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: custom
+  ingredient_pos:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: custom
+  ingredient_neg:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: custom
+  allergy_list:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: custom
+  recommendation_amount:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: custom
+  suggestion:
+    type: any
+    influence_conversation: false
+    mappings:
+      - type: custom
+responses:
+  utter_out_of_scope:
+  - text: Sorry, I can't handle that request.
+  utter_welcome_greet:
+  - text: Hello There! Welcome to Pizzabot. How can I help you?
+  utter_anything_else:
+  - text: Is there anything else I can help you with?
+  utter_ask_pizza_type:
+  - text: Okay! What pizza do you want?
+  utter_takeaway_or_delivery:
+  - text: Good. Do you prefer takeaway or home delivery?
+  utter_preferred_delivery_time:
+  - text: And what is the preferred delivery time?
+  utter_preferred_takeaway_time:
+  - text: And what is the preferred take away time?
+  utter_name_phone:
+  - text: Very well! Please provide us your name and phone.
+  utter_order_complete_delivery:
+  - text: Thank you for choosing us, {client_name}. Please wait for your order. Thanks for the opportunity to serve you.
+  utter_order_complete_takeaway:
+  - text: Thank you for choosing us, {client_name}. We are waiting for you. Thanks for the opportunity to serve you.
+  utter_delivery_address:
+  - text: Please provide us with your home/ office address
+  utter_default:
+  - text: Sorry, I didn’t understand that. Can you please rephrase it?
+  utter_please_rephrase:
+  - text: Sorry, I'm having difficulties understanding your message. Can you please rephrase it?
+  utter_explain_pizza_quantities:
+  - text: In this specific question, I am asking you how many pizzas of the same type you would like in your order.
+  utter_explain_pizza_crust:
+  - text: 'You can choose one out of four pizza crusts: Stuffed Crust, Cracker Crust, Flat Bread Crust, Thin Crust.'
+  utter_explain_pizza_size:
+  - text: You can choose small - 10", medium - 12" or large - 14".
+  utter_inform_restaurant_location:
+  - text: Our restaurant is located at Via Giuseppe Verdi, 15, 38122 Trento TN.
+  utter_ask_sliced:
+  - text: Good! Do you want it sliced?
+  utter_more_toppings:
+  - text: Ok, do you want to add more toppings?
+  utter_ask_more_toppings:
+  - text: What toppings do you want to add?
+  utter_ask_for_drink:
+  - text: Okay! Do you want anything to drink?
+  utter_ask_drinks:
+  - text: What drink would you like?
+  utter_available_drinks:
+  - text: 'Here are our drink options: Water, Coca-Cola, Pepsi-Cola, Apple Juice and Orange Juice.'
+  utter_ask_entity_to_change:
+  - text: What would you like to change?
+  utter_order_canceled:
+  - text: Okay! All your order has been cancelled.
+  utter_bye:
+  - text: Thank you for using Pizzabot! Hope to hear from you again.
+  utter_ask_recommendation_amount:
+  - text: Sure! How many pizza do you want me to recommend?
+  utter_ask_ingredient_pos:
+  - text: Perfect! Is there any particular ingredient that you would like to have on your pizza?
+  utter_ask_ingredient_neg:
+  - text: And is there anything you prefer not to have on your pizza?
+  utter_ask_allergies_list:
+  - text: Got it! Do you need to inform me about any allergy?
+actions:
+- utter_more_toppings
+- action_utter_confirm
+- action_reset_pizza_change_form
+- action_set_add_more_pizza
+- utter_ask_for_drink
+- action_reset_extra_toppings
+- utter_explain_pizza_quantities
+- utter_preferred_delivery_time
+- action_utter_anything_else
+- utter_takeaway_or_delivery
+- utter_delivery_address
+- utter_order_complete_delivery
+- action_get_toppings_list
+- action_pizza_question_positive
+- utter_anything_else
+- utter_explain_pizza_crust
+- validate_pizza_order_form
+- utter_inform_restaurant_location
+- action_get_restaurant_location
+- utter_welcome_greet
+- utter_ask_pizza_type
+- action_change_order
+- action_reset_pizza_form
+- action_order_number
+- utter_default
+- action_ask_pizza_size
+- action_ask_pizza_amount
+- action_ask_pizza_crust
+- action_pizza_question_negative
+- validate_extra_toppings_form
+- action_ask_group_to_add
+- validate_drinks_form
+- validate_change_form
+- action_ask_group_to_change
+- action_set_pizza_change_flag
+- action_cancel_order
+- action_get_menu
+- set_ingredient_pos
+- set_ingredient_neg
+- set_allergies_list
+- validate_recommendation_form
+- make_recommendation_action
+- add_recommendation_to_order
+forms:
+  pizza_order_form:
+    required_slots:
+    - pizza_type
+    - pizza_toppings
+    - pizza_size
+    - pizza_amount
+    - pizza_crust
+    - sliced
+    - add_more_pizza
+  extra_toppings_form:
+    required_slots:
+    - more_toppings
+    - group_to_add
+    - pizza_toppings
+  drinks_form:
+    required_slots:
+    - drinks
+  change_form:
+    required_slots:
+    - group_to_change
+    - entity_to_change
+    - pizza_type
+    - pizza_size
+    - pizza_amount
+    - pizza_crust
+    - pizza_toppings
+  recommendation_form:
+    required_slots:
+    - recommendation_amount

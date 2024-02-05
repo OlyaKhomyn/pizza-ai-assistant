@@ -1,0 +1,301 @@
+version: "3.1"
+nlu:
+- intent: response_name_phone
+  examples: |
+    - Leonardo and [098722321](phone_number)
+    - I'm Lorenzo my number is [439209349](phone_number)
+    - Call me David [718741284](phone_number)
+- intent: request_restaurant_location
+  examples: |
+    - How do I find you?
+    - Where are you?
+    - Where should I arrive?
+- intent: order_take_home
+  examples: |
+    - takeaway is fine
+    - i want takeaway
+    - takeaway please
+- intent: order_delivery
+  examples: |
+    - i want it delivered
+    - deliver it
+    - delivery will be perfect
+- intent: preferred_time
+  examples: |
+    - in 15 minutes
+    - today
+    - at 4am
+- intent: add_drink
+  examples: |
+    - i want an [orange juice](drink)
+    - i'll take [one](drink_amount) [pepsi](drink)
+- intent: menu_question
+  examples: |
+    - what pizzas choices do you have?
+    - i want to hear a menu
+    - what's on a menu?
+- intent: out_of_scope
+  examples: |
+    - how are you?
+    - tell me something cool
+- intent: allergy
+  examples: |
+    - can't have [lactose](allergy_list)
+    - i have [peanuts](allergy_list) allergy
+- intent: order_delivery_address
+  examples: |
+    - my address is house num 46  655 avenue du techno pole street
+    - house num 46  655 avenue du techno pole street
+- intent: explain
+  examples: |
+    - what does it mean?
+    - tell me more
+- intent: general_inquiry
+  examples: |
+    - what can I add?
+    - what do you have?
+- intent: response_negative
+  examples: |
+    - Nope
+    - No
+    - No, I want to make a change
+- intent: cancel_order
+  examples: |
+    - cancel all
+    - just delete everything
+- intent: welcome_greet
+  examples: |
+    - hi there
+    - Hi
+    - hello
+- intent: ask_recommendation
+  examples: |
+    - i want some recommendation
+    - what would you recommend to me?
+    - suggest to me anything
+- intent: response_positive
+  examples: |
+    - yes
+    - perfect
+    - Yeah
+- intent: item_amount
+  examples: |
+    - let's have [1](pizza_amount)
+    - i want [two](pizza_amount)
+    - [three](pizza_amount)
+- intent: topping_negative
+  examples: |
+    - no [meat](pizza_toppings) please
+    - i don't enjoy [onions](pizza_toppings)
+    - i don't want [tuna](pizza_toppings)
+- intent: item_type
+  examples: |
+    - [Pepperoni](pizza_type) pizza
+    - [Napoli](pizza_type)
+    - [Calzone](pizza_type) pizza
+    - its for [Vegetarian](pizza_type) pizza
+- intent: item_change
+  examples: |
+    - can I get a [Pepperoni](pizza_type) instead?
+    - you misunderstood me
+    - i want it [medium](pizza_size) instead
+- intent: item_size
+  examples: |
+    - [medium](pizza_size)
+    - it should be [large](pizza_size)
+    - let have [small](pizza_size)
+- intent: crust_type
+  examples: |
+    - let's have [thin bread](pizza_crust)
+    - [flat bread crust](pizza_crust)
+    - make it [flat](pizza_crust)
+- intent: add_more_toppings
+  examples: |
+    - please add also [salmon](pizza_toppings)
+    - [onions](pizza_toppings) and [tuna](pizza_toppings)
+    - i want extra [tuna](pizza_toppings)
+- intent: init_pizza_question_negative
+  examples: |
+    - is there a pizza without [meat](pizza_toppings)?
+    - any pizza without [onions](pizza_toppings)?
+    - pizza with no [cheese](pizza_toppings)?
+- intent: init_pizza_question_positive
+  examples: |
+    - any [bufala](pizza_toppings) pizza?
+    - do you serve [Romana](pizza_type) and [Capricciosa](pizza_type) pizzas?
+    - is there [olives](pizza_toppings) topping?
+- intent: remove_item
+  examples: |
+    - remove [potatoes](pizza_toppings) from my pizza
+    - delete [Margherita](pizza_type) from my order
+    - please delete [artichoke](pizza_toppings) pizza
+- intent: item_start_generic
+  examples: |
+    - Pizza will do
+    - I want a pizza with [bacon](pizza_toppings) and [salmon](pizza_toppings)
+    - [large](pizza_size) [Pepperoni](pizza_type)
+- synonym: small
+  examples: |
+    - 10
+    - 10 inch
+    - small
+    - Small
+    - size S
+    - S
+- synonym: medium
+  examples: |
+    - 12
+    - 12 inch
+    - Medium
+    - medium
+    - normal
+    - twelve inch
+    - size M
+    - M
+- synonym: large
+  examples: |
+    - 14
+    - 14 inch
+    - large
+    - size L
+    - L
+- synonym: Funghi
+  examples: |
+    - Funghi
+    - funghi
+- synonym: Hawaii
+  examples: |
+    - Hawaii
+    - hawaii
+    - ananas
+- synonym: Margherita
+  examples: |
+    - Margherita
+    - margherita
+- synonym: Pepperoni
+  examples: |
+    - Pepp
+    - pepper
+    - pepperoni
+- synonym: Vegetarian
+  examples: |
+    - Vegetarian
+    - Vegetable
+    - with vegetables
+    - vegetarian
+    - vegetable
+- synonym: Stuffed Crust
+  examples: |
+    - stuffed
+    - Stuffed
+    - stuffed crust
+- synonym: Cracker Crust
+  examples: |
+    - cracker
+    - Cracker
+    - cracker crust
+- synonym: Flat Bread Crust
+  examples: |
+    - flat
+    - flat bread
+    - flat bread crust
+    - Flat
+    - Flat Bread
+- synonym: Thin Crust
+  examples: |
+    - thin
+    - thin crust
+    - thin Crust
+- synonym: lactose
+  examples: |
+    - dairy
+    - lactose-free
+- synonym: gluten
+  examples: |
+    - gluten-free
+- synonym: coca cola
+  examples: |
+    - coca-cola
+    - coke
+- regex: phone_number
+  examples: |
+    - \d{9,9}
+- lookup: allergy_list
+  examples: |
+    - lactose
+    - shellfish
+    - gluten
+    - peanuts
+    - fish
+- lookup: drink
+  examples: |
+    - coca cola
+    - pepsi
+    - water
+    - apple juice
+    - orange juice
+- lookup: pizza_amount
+  examples: |
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+    - 20
+- lookup: pizza_crust
+  examples: |
+    - Stuffed Crust
+    - Cracker Crust
+    - Flat Bread Crust
+    - Thin Crust
+- lookup: pizza_size
+  examples: |
+    - small
+    - medium
+    - large
+- lookup: pizza_toppings
+  examples: |
+    - funghi
+    - artichoke
+    - ham
+    - olives
+    - onions
+    - potatoes
+    - bacon
+    - mortadella
+    - salami
+    - mozzarella
+    - burrata
+    - bufala
+    - tomatoes
+    - corn
+    - salmon
+    - tuna
+- lookup: pizza_type
+  examples: |
+    - Hawaii
+    - Margherita
+    - Pepperoni
+    - Vegetarian
+    - Americana
+    - Marinara
+    - Napoli
+    - Romana
+    - 4 cheeses
+    - Capricciosa
+    - Calzone
+    - Seafood

@@ -1,0 +1,312 @@
+version: "3.1"
+stories:
+
+- story: change order requested_slot pizza_amount
+  steps:
+    - or:
+      - intent: item_start_generic
+      - intent: item_type
+    - action: action_set_add_more_pizza
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+      - requested_slot: pizza_amount
+    - or:
+      - intent: item_change
+      - intent: remove_item
+    - action: action_set_pizza_change_flag
+    - action: action_deactivate_loop
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null
+    - action: change_form
+    - active_loop: change_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: action_reset_pizza_change_form
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_more_toppings
+#    - checkpoint: ask_for_more_toppings
+
+- story: change order requested_slot pizza_size
+  steps:
+    - or:
+        - intent: item_start_generic
+        - intent: item_type
+    - action: action_set_add_more_pizza
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+      - requested_slot: pizza_size
+    - or:
+      - intent: item_change
+      - intent: remove_item
+    - action: action_set_pizza_change_flag
+    - action: action_deactivate_loop
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null
+    - action: change_form
+    - active_loop: change_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: action_reset_pizza_change_form
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_more_toppings
+#    - checkpoint: ask_for_more_toppings
+
+- story: change order requested_slot pizza_crust
+  steps:
+    - or:
+        - intent: item_start_generic
+        - intent: item_type
+    - action: action_set_add_more_pizza
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+      - requested_slot: pizza_crust
+    - or:
+      - intent: item_change
+      - intent: remove_item
+    - action: action_set_pizza_change_flag
+    - action: action_deactivate_loop
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null
+    - action: change_form
+    - active_loop: change_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: action_reset_pizza_change_form
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_more_toppings
+#    - checkpoint: ask_for_more_toppings
+
+- story: change order requested_slot pizza_type
+  steps:
+    - or:
+        - intent: item_start_generic
+        - intent: item_type
+    - action: action_set_add_more_pizza
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+      - requested_slot: pizza_type
+    - or:
+      - intent: item_change
+      - intent: remove_item
+    - action: action_set_pizza_change_flag
+    - action: action_deactivate_loop
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null
+    - action: change_form
+    - active_loop: change_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: action_reset_pizza_change_form
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_more_toppings
+#    - checkpoint: ask_for_more_toppings
+
+- story: change order requested_slot sliced
+  steps:
+    - or:
+        - intent: item_start_generic
+        - intent: item_type
+    - action: action_set_add_more_pizza
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+      - requested_slot: sliced
+    - or:
+      - intent: item_change
+      - intent: remove_item
+    - action: action_set_pizza_change_flag
+    - action: action_deactivate_loop
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null
+    - action: change_form
+    - active_loop: change_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: action_reset_pizza_change_form
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_more_toppings
+#    - checkpoint: ask_for_more_toppings
+
+- story: add toppings requested_slot pizza_amount
+  steps:
+    - or:
+        - intent: item_start_generic
+        - intent: item_type
+    - action: action_set_add_more_pizza
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+      - requested_slot: pizza_amount
+    - intent: add_more_toppings
+    - action: action_set_pizza_change_flag
+    - action: action_deactivate_loop
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null
+    - action: extra_toppings_form
+    - active_loop: extra_toppings_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: action_reset_extra_toppings
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_more_toppings
+#    - checkpoint: ask_for_more_toppings
+
+- story: add toppings requested_slot pizza_size
+  steps:
+    - or:
+        - intent: item_start_generic
+        - intent: item_type
+    - action: action_set_add_more_pizza
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+      - requested_slot: pizza_size
+    - intent: add_more_toppings
+    - action: action_set_pizza_change_flag
+    - action: action_deactivate_loop
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null
+    - action: extra_toppings_form
+    - active_loop: extra_toppings_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: action_reset_extra_toppings
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_more_toppings
+#    - checkpoint: ask_for_more_toppings
+
+- story: add toppings requested_slot pizza_crust
+  steps:
+    - or:
+        - intent: item_start_generic
+        - intent: item_type
+    - action: action_set_add_more_pizza
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+      - requested_slot: pizza_crust
+    - intent: add_more_toppings
+    - action: action_set_pizza_change_flag
+    - action: action_deactivate_loop
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null
+    - action: extra_toppings_form
+    - active_loop: extra_toppings_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: action_reset_extra_toppings
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_more_toppings
+#    - checkpoint: ask_for_more_toppings
+
+- story: add toppings requested_slot pizza_type
+  steps:
+    - or:
+        - intent: item_start_generic
+        - intent: item_type
+    - action: action_set_add_more_pizza
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+      - requested_slot: pizza_type
+    - intent: add_more_toppings
+    - action: action_set_pizza_change_flag
+    - action: action_deactivate_loop
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null
+    - action: extra_toppings_form
+    - active_loop: extra_toppings_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: action_reset_extra_toppings
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_more_toppings
+#    - checkpoint: ask_for_more_toppings
+
+- story: add toppings requested_slot sliced
+  steps:
+    - or:
+      - intent: item_start_generic
+      - intent: item_type
+    - action: action_set_add_more_pizza
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+      - requested_slot: sliced
+    - intent: add_more_toppings
+    - action: action_set_pizza_change_flag
+    - action: action_deactivate_loop
+    - active_loop: null
+    - slot_was_set:
+      - requested_slot: null
+    - action: extra_toppings_form
+    - active_loop: extra_toppings_form
+    - slot_was_set:
+      - requested_slot: null
+    - active_loop: null
+    - action: action_reset_extra_toppings
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_more_toppings
+#    - checkpoint: ask_for_more_toppings

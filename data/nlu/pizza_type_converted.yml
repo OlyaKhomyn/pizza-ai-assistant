@@ -1,0 +1,16 @@
+version: "3.1"
+nlu:
+- lookup: pizza_type
+  examples: |
+    - Hawaii
+    - Margherita
+    - Pepperoni
+    - Vegetarian
+    - Americana
+    - Marinara
+    - Napoli
+    - Romana
+    - 4 cheeses
+    - Capricciosa
+    - Calzone
+    - Seafood

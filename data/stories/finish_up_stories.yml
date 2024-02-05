@@ -1,0 +1,66 @@
+version: "3.1"
+stories:
+
+- story: anything else + user want to change its order
+  steps:
+  - action: action_utter_anything_else
+  - or:
+    - intent: item_change
+    - intent: remove_toppings
+  - action: change_form
+  - active_loop: change_form
+  - slot_was_set:
+      - requested_slot: null
+  - active_loop: null
+  - action: action_reset_pizza_change_form
+  - action: action_utter_anything_else
+
+- story: anything else + drink
+  steps:
+  - action: action_utter_anything_else
+  - intent: add_drink
+  - action: drinks_form
+  - active_loop: drinks_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_utter_anything_else
+
+- story: anything else + more toppings
+  steps:
+  - action: action_utter_anything_else
+  - intent: add_more_toppings
+  - action: extra_toppings_form
+  - active_loop: extra_toppings_form
+  - slot_was_set:
+      - requested_slot: null
+  - active_loop: null
+  - action: action_reset_extra_toppings
+  - action: action_utter_anything_else
+
+- story: anything else + response negative + delivery
+  steps:
+  - action: action_utter_anything_else
+  - intent: response_negative
+  - action: utter_takeaway_or_delivery
+  - intent: order_delivery
+  - action: utter_delivery_address
+  - intent: order_delivery_address
+  - action: utter_preferred_delivery_time
+  - intent: preferred_time
+  - action: utter_name_phone
+  - intent: response_name_phone
+  - action: utter_order_complete_delivery
+
+- story: anything else + response negative + take away
+  steps:
+  - action: action_utter_anything_else
+  - intent: response_negative
+  - action: utter_takeaway_or_delivery
+  - intent: order_take_home
+  - action: utter_inform_restaurant_location
+  - action: utter_preferred_takeaway_time
+  - intent: preferred_time
+  - action: utter_name_phone
+  - intent: response_name_phone
+  - action: utter_order_complete_takeaway

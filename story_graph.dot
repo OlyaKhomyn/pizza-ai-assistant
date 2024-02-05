@@ -1,0 +1,23 @@
+digraph  {
+0 [class="start active", fillcolor=green, fontsize=12, label=START, style=filled];
+1 [class=active, fontsize=12, label=action_session_start];
+2 [class=active, fontsize=12, label=action_set_add_more_pizza];
+3 [class=active, fontsize=12, label=pizza_order_form];
+6 [class=active, fontsize=12, label=utter_more_toppings];
+7 [class="dashed active", fontsize=12, label=extra_toppings_form];
+8 [class="intent active", fillcolor=lightblue, label="/item_start_generic", shape=rect, style=filled];
+9 [class="intent active", fillcolor=lightblue, label="/crust_type", shape=rect, style=filled];
+10 [class="intent active", fillcolor=lightblue, label="/response_negative", shape=rect, style=filled];
+11 [class="intent active", fillcolor=lightblue, label="/add_more_toppings", shape=rect, style=filled];
+0 -> 1  [class=active, key=NONE, label=""];
+1 -> 8  [class=active, key=0];
+2 -> 3  [class=active, key=NONE, label=""];
+3 -> 6  [class=active, key=NONE, label=""];
+3 -> 9  [class=active, key=0];
+3 -> 10  [class=active, key=0];
+6 -> 11  [class=active, key=0];
+8 -> 2  [class=active, key=0];
+9 -> 3  [class=active, key=0];
+10 -> 3  [class=active, key=0];
+11 -> 7  [class=active, key=0];
+}

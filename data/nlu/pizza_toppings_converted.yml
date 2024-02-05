@@ -1,0 +1,20 @@
+version: "3.1"
+nlu:
+- lookup: pizza_toppings
+  examples: |
+    - funghi
+    - artichoke
+    - ham
+    - olives
+    - onions
+    - potatoes
+    - bacon
+    - mortadella
+    - salami
+    - mozzarella
+    - burrata
+    - bufala
+    - tomatoes
+    - corn
+    - salmon
+    - tuna

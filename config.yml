@@ -1,0 +1,71 @@
+recipe: default.v1
+
+language: en
+
+pipeline:
+- name: SpacyNLP
+  model: en_core_web_md
+  case_sensitive: False
+- name: SpacyTokenizer
+- name: SpacyFeaturizer
+- name: RegexFeaturizer
+  use_lookup_tables: True
+  use_regexes: True
+- name: SpacyEntityExtractor
+  dimensions: ["PERSON"]
+- name: LogisticRegressionClassifier
+- name: CRFEntityExtractor
+- name: EntitySynonymMapper
+- name: FallbackClassifier
+  threshold: 0.4
+
+#pipeline:
+#- name: SpacyNLP
+#  model: en_core_web_md
+#  case_sensitive: False
+#- name: WhitespaceTokenizer
+#- name: RegexFeaturizer
+#  use_lookup_tables: True
+#  use_regexes: True
+#- name: LexicalSyntacticFeaturizer
+#- name: CountVectorsFeaturizer
+#- name: CountVectorsFeaturizer
+#  analyzer: char_wb
+#  min_ngram: 1
+#  max_ngram: 4
+#- name: SpacyEntityExtractor
+#  dimensions: ["PERSON"]
+#- name: DIETClassifier
+#  epochs: 40
+#- name: EntitySynonymMapper
+#- name: FallbackClassifier
+#  threshold: 0.4
+
+#pipeline:
+#- name: SpacyNLP
+#  model: en_core_web_md
+#  case_sensitive: False
+#- name: SpacyTokenizer
+#- name: SpacyFeaturizer
+#- name: RegexFeaturizer
+#  use_lookup_tables: True
+#  use_regexes: True
+#- name: SpacyEntityExtractor
+#  dimensions: ["PERSON"]
+#- name: DIETClassifier
+#  epochs: 40
+#- name: EntitySynonymMapper
+#- name: FallbackClassifier
+#  threshold: 0.4
+
+policies:
+- name: AugmentedMemoizationPolicy
+  max_history: 5
+- name: TEDPolicy
+  epochs: 50
+  max_history: 5
+- name: RulePolicy
+  core_fallback_threshold: 0.4
+  core_fallback_action_name: "action_default_fallback"
+  enable_fallback_prediction: True
+assistant_id: 20231202-221250-mode-flour

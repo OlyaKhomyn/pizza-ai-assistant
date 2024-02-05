@@ -1,0 +1,71 @@
+version: "3.1"
+
+rules:
+- rule: explain menu
+  condition:
+    - active_loop: pizza_order_form
+  steps:
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+      - requested_slot: pizza_type
+    - intent: general_inquiry
+    - action: action_get_menu
+    - action: pizza_order_form
+
+- rule: explain quantities
+  condition:
+    - active_loop: pizza_order_form
+  steps:
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+      - requested_slot: pizza_amount
+    - intent: explain
+    - action: utter_explain_pizza_quantities
+    - action: pizza_order_form
+
+- rule: explain crust
+  condition:
+    - active_loop: pizza_order_form
+  steps:
+    - action: pizza_order_form
+    - slot_was_set:
+      - requested_slot: pizza_crust
+    - intent: explain
+    - action: utter_explain_pizza_crust
+    - action: pizza_order_form
+
+- rule: explain size
+  condition:
+    - active_loop: pizza_order_form
+  steps:
+    - action: pizza_order_form
+    - slot_was_set:
+      - requested_slot: pizza_size
+    - intent: explain
+    - action: utter_explain_pizza_size
+    - action: pizza_order_form
+
+- rule: ask for toppings in the middle of the form
+  condition:
+    - active_loop: extra_toppings_form
+  steps:
+    - intent: general_inquiry
+    - action: action_get_toppings_list
+    - action: extra_toppings_form
+    - active_loop: extra_toppings_form
+
+- rule: ask for drinks in the middle of the form
+  condition:
+    - active_loop: drinks_form
+  steps:
+    - intent: general_inquiry
+    - action: utter_available_drinks
+    - action: drinks_form
+    - active_loop: drinks_form
+
+- rule: get menu
+  steps:
+    - intent: menu_question
+    - action: action_get_menu

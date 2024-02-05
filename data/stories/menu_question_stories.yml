@@ -1,0 +1,64 @@
+version: "3.1"
+stories:
+
+
+
+- story: explain quantities
+  steps:
+    - or:
+      - intent: item_start_generic
+      - intent: item_type
+    - action: action_set_add_more_pizza
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+      - requested_slot: pizza_amount
+    - intent: explain
+    - action: utter_explain_pizza_quantities
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_more_toppings
+#    - checkpoint: ask_for_more_toppings
+
+- story: explain crust
+  steps:
+    - or:
+        - intent: item_start_generic
+        - intent: item_type
+    - action: action_set_add_more_pizza
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+      - requested_slot: pizza_crust
+    - intent: explain
+    - action: utter_explain_pizza_crust
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_more_toppings
+#    - checkpoint: ask_for_more_toppings
+
+- story: explain size
+  steps:
+    - or:
+        - intent: item_start_generic
+        - intent: item_type
+    - action: action_set_add_more_pizza
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+      - requested_slot: pizza_size
+    - intent: explain
+    - action: utter_explain_pizza_size
+    - action: pizza_order_form
+    - active_loop: pizza_order_form
+    - slot_was_set:
+        - requested_slot: null
+    - active_loop: null
+    - action: utter_more_toppings
+#    - checkpoint: ask_for_more_toppings
