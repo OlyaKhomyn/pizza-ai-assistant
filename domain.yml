@@ -278,9 +278,7 @@ actions:
 - action_get_restaurant_location
 - utter_welcome_greet
 - utter_ask_pizza_type
-- action_change_order
 - action_reset_pizza_form
-- action_order_number
 - utter_default
 - action_ask_pizza_size
 - action_ask_pizza_amount
