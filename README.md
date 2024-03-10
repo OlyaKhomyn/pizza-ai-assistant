@@ -1,11 +1,14 @@
 # Pizza Assistant
 
 ### About
-Artificial Intelligence text/vocal user assistant that is able to automate a task of ordering a pizza. It has been designed to handle the monotonous tasks that otherwise would require speaking to the human operator such as: asking what is on a menu, place an order for a delivery or takeaway, order a drink, ask for a recommendation and others. 
+Artificial Intelligence text/vocal user assistant that is able to automate a task of ordering a pizza. It has been designed to handle the monotonous tasks that otherwise would require speaking to the human operator such as: asking what is on a menu, placing an order for a delivery or takeaway, ordering a drink, asking for a recommendation and others. 
 
 The assistant was developed using Rasa v3.6, which is an open-source Conversational AI framework. The model was then connected to Amazon Alexa Skill for vocal integration.
 
-### Demo
+### Demos
+
+https://github.com/OlyaKhomyn/pizza-ai-assistant/assets/41692593/fa995189-eaaf-42a0-b754-357477e3d067
+
 
 https://github.com/OlyaKhomyn/pizza-ai-assistant/assets/41692593/44e9ac00-41a0-4758-b517-e7fa9e34aae3
 
